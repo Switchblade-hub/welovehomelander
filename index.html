@@ -1,812 +1,1102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Archive: International Women's Day</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 
-                      brown: '#4a3728', 
-                      vellum: '#fdfcf4', 
-                      gold: '#c5a059', 
-                      night: '#0f0f0f' 
-                    },
-                    fontFamily: { 
-                      serif: ['Playfair Display', 'serif'], 
-                      sans: ['Inter', 'sans-serif'] 
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        :root { --vh: 1vh; }
-        html, body, #root { 
-            height: 100%; 
-            height: calc(var(--vh, 1vh) * 100);
-        }
-        body { 
-            background-color: #fdfcf4; 
-            overflow: hidden;
-            color: #4a3728;
-            width: 100vw;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- TODO: change this title before we go live pls -->
+  <!-- also ask ali if the yellow is right or if its the other one -->
+  <title>eFootball njaa Icons</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .view-enter {
-            animation: viewFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes viewFadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    :root {
+      --blue-deep:   #0a1550;
+      --blue-mid:    #0d1f6e;
+      --blue-bright: #1a35c8;
+      --blue-panel:  #0f1a5a;
+      --yellow:      #f5d800;
+      --yellow-dim:  #c8a800;
+      --green:       #1a6b2a;
+      --green-pitch: #1e7a30;
+      --white:       #f4f0e8;
+      --muted:       #6a7abf;
+      --border:      #1e2e88;
+      --border-dim:  #142060;
+      --red:         #e8002d;
+      --cyan:        #00d4ff;
+      /* --orange: #e87c00; */  /* commented out, might use later idk */
+      --purp: #8b00cc;
+    }
 
-        .vellum-texture {
-            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-        }
+    html { scroll-behavior: smooth; }
 
-        .organic-card {
-            background: #ffffff;
-            border: 1px solid rgba(74, 55, 40, 0.1);
-            transition: all 0.3s ease;
-        }
-        .organic-card:hover {
-            transform: rotate(-0.5deg) translateY(-2px);
-            box-shadow: 0 10px 20px rgba(74, 55, 40, 0.05);
-        }
+    body {
+      background: var(--blue-deep);
+      color: var(--white);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      cursor: crosshair;
+      overflow-x: hidden; /* this is the problem — kills horizontal scroll site-wide */
+      /* tried to fix scroll bug here, didn't work, leaving it */
+      /* scroll-padding-top: 60px; */
+    }
 
-        .sidebar-active {
-            background: rgba(197, 160, 89, 0.1);
-            color: #4a3728;
-        }
+    /* ---- TOPBAR ---- */
+    /* TODO: make this responsive properly */
+    .topbar {
+      background: var(--blue-mid);
+      border-bottom: 2px solid var(--yellow);
+      padding: 18px 60px 18px 52px; /* left/right intentionally diff */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
 
-        .nav-item-enter { animation: navItemEnter 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; opacity: 0; transform: translateY(10px) scale(0.9); }
-        @keyframes navItemEnter { to { opacity: 1; transform: translateY(0) scale(1); } }
-        .glass-nav { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+    .logo {
+      font-size: 12px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--white);
+      font-weight: 700;
+    }
+    .logo span { color: var(--yellow); letter-spacing: 7px; } /* letter-spacing inconsistent with logo */
 
-        .iwd-content h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            font-style: italic;
-            color: #4a3728;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        .iwd-content p {
-            font-family: 'Inter', sans-serif;
-            color: rgba(74, 55, 40, 0.7);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        .iwd-quote {
-            border-left: 4px solid #c5a059;
-            padding-left: 1.5rem;
-            margin: 2rem 0;
-            font-style: italic;
-            font-family: 'Playfair Display', serif;
-            color: #4a3728;
-        }
-    </style>
+    .logo-e {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--blue-deep);
+      font-weight: 900;
+      font-style: italic;
+      font-size: 13px;
+      padding: 1px 5px 1px 4px;
+      margin-right: 6px;
+      transform: rotate(-0.8deg) translateY(-1px);
+    }
+
+    .nav { display: flex; gap: 36px; list-style: none; }
+    .nav a {
+      text-decoration: none;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav a:hover { color: var(--yellow); }
+    /* last nav link hover was copy pasted wrong */
+    .nav li:last-child a:hover { color: var(--muted); }
+
+    .nav-tag {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--yellow);
+      text-transform: uppercase;
+      border: 1.5px solid var(--yellow);
+      padding: 4px 10px 5px; /* 1px off bottom */
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 100px 56px 70px; /* 4px diff from topbar left padding, didn't notice */
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      background: linear-gradient(160deg, #0d1f6e 0%, #0a1550 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -80px; right: -60px;
+      width: 380px; height: 600px;
+      background: rgba(26,53,200,0.18);
+      transform: rotate(14deg);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 24px;
+      margin-top: 3px; /* leftover from debugging */
+    }
+
+    .hero-h1 {
+      font-size: clamp(48px, 6vw, 76px);
+      font-weight: 300;
+      letter-spacing: -0.5px; /* was -1px, changed mid-session and forgot */
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .hero-h1 strong { font-weight: 800; display: block; color: var(--yellow); }
+
+    .hero-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.85; /* everywhere else uses 1.9 */
+      max-width: 400px;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 32px;
+    }
+
+    .hero-count {
+      font-size: 110px;
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--border);
+      line-height: 1;
+      user-select: none;
+      margin-right: -8px; /* intentionally bleeds */
+    }
+
+    .hero-meta { text-align: right; }
+    .hero-meta p {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 2.4;
+    }
+
+    .strength-box {
+      background: var(--blue-panel);
+      border: 1px solid var(--border);
+      padding: 20px 28px 20px 24px; /* asymmetric, oops */
+      margin-top: 4px;
+    }
+    .strength-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .strength-num {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--yellow);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    /* ─── PLAYER COLUMNS ─── */
+    .players {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(180px, 1fr));
+      border-top: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    .player-col {
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: background 0.25s;
+    }
+    .player-col:last-child { border-right: none; }
+    .player-col:hover { background: var(--blue-panel); }
+
+    .pos-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      margin-bottom: 24px;
+    }
+    .pos-cf  { background: var(--red);    color: #fff; }
+    .pos-rw  { background: var(--purp);   color: #fff; }
+    .pos-amf { background: var(--blue-bright); color: #fff; }
+    .pos-ss  { background: #cc6600;       color: #fff; }
+    /* showtime badge — tried to match the gradient from the card but it's slightly off */
+    .pos-showtime { background: linear-gradient(90deg, #7b00cc, #cc006a); color: #fff; letter-spacing: 1px; }
+
+    .player-top {
+      /* third col has different padding, accident from editing */
+      padding: 36px 28px 24px;
+      border-bottom: 1px solid var(--border);
+      flex: 1;
+    }
+    .player-col:nth-child(3) .player-top { padding: 36px 31px 24px; }
+
+    .player-index {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    /* one col's index has double the bottom margin — debugging leftover */
+    .player-col:nth-child(4) .player-index { margin-bottom: 72px; }
+
+    .player-rating {
+      font-size: 60px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--yellow);
+      margin-bottom: 2px;
+      letter-spacing: -3px;
+    }
+    /* font sizes drift between cols */
+    .player-col:nth-child(2) .player-rating { font-size: 57px; }
+    .player-col:nth-child(3) .player-rating { font-size: 63px; }
+    .player-col:nth-child(5) .player-rating { font-size: 58px; }
+
+    .player-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 5px;
+      margin-top: 20px;
+    }
+    /* col 4 name is slightly dimmer, forgot to fix */
+    .player-col:nth-child(4) .player-name { color: rgba(244,240,232,0.8); }
+
+    .player-nat {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .player-clubs { font-size: 10px; color: var(--muted); line-height: 2; }
+    .player-clubs span { display: block; letter-spacing: 0.5px; }
+
+    /* STAT BARS */
+    .player-stats { padding: 24px 28px; border-bottom: 1px solid var(--border); }
+    /* col 2 stats have extra left padding leftover from a test */
+    .player-col:nth-child(2) .player-stats { padding-left: 32px; }
+
+    .pstat { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .pstat:last-child { margin-bottom: 0; }
+
+    .pstat-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      width: 24px;
+      flex-shrink: 0;
+    }
+
+    .pstat-track {
+      flex: 1;
+      height: 2px;
+      background: var(--border-dim);
+      position: relative;
+    }
+    /* col2 tracks shifted 1px down */
+    .player-col:nth-child(2) .pstat-track { top: 1px; }
+
+    .pstat-fill {
+      position: absolute;
+      left: 0; top: 0; height: 100%;
+      background: var(--yellow);
+      width: var(--w);
+      animation: grow 1.4s cubic-bezier(0.22,1,0.36,1) both;
+      animation-delay: var(--d, 0.2s);
+    }
+    /* ribery col uses cyan, nobody noticed */
+    .player-col:nth-child(3) .pstat-fill { background: var(--cyan); }
+    /* kuyt col bar color got switched to a lighter yellow */
+    .player-col:nth-child(5) .pstat-fill { background: #fce84a; }
+
+    @keyframes grow { from { width: 0; } to { width: var(--w); } }
+
+    .pstat-val {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--yellow);
+      width: 20px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .player-col:nth-child(3) .pstat-val { color: var(--cyan); }
+    /* col 5 val font size accidentally bigger */
+    .player-col:nth-child(5) .pstat-val { font-size: 12px; }
+
+    /* TAGS */
+    .player-tags { padding: 18px 28px 24px; }
+    /* col 1 tags have wrong bottom padding from a resize session */
+    .player-col:nth-child(1) .player-tags { padding-bottom: 31px; }
+
+    .tag {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 8px;
+      margin: 0 4px 5px 0;
+      transition: all 0.2s;
+    }
+    .player-col:hover .tag { border-color: var(--yellow); color: var(--yellow); }
+    /* col 3 hover leaves tags unchanged — broken hover state */
+    .player-col:nth-child(3):hover .tag { border-color: var(--border); color: var(--muted); }
+    /* col 4 tags have wider padding from an old experiment */
+    .player-col:nth-child(4) .tag { padding: 4px 11px; }
+
+    /* ─── PITCH DIVIDER ─── */
+    .pitch-divider {
+      height: 6px;
+      background: var(--green-pitch);
+      border-top: 1px solid #2a9a40;
+      border-bottom: 1px solid #155520;
+      position: relative; overflow: hidden;
+    }
+    .pitch-divider::after {
+      content: '';
+      position: absolute;
+      left: 50%; top: 0; bottom: 0; width: 2px;
+      background: rgba(255,255,255,0.2);
+      transform: translateX(-50%);
+    }
+
+    /* ─── FEATURED ─── */
+    .featured {
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: linear-gradient(160deg, var(--blue-mid) 0%, var(--blue-deep) 100%);
+    }
+
+    .featured-left { padding: 72px 56px; border-right: 1px solid var(--border); }
+
+    .featured-label {
+      font-size: 9px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 28px;
+    }
+
+    .featured-name {
+      font-size: clamp(44px, 5vw, 68px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 0.92;
+      color: var(--white);
+      margin-bottom: 36px;
+    }
+    .featured-name em {
+      font-style: normal;
+      font-weight: 300;
+      display: block;
+      color: var(--muted);
+      font-size: 0.5em;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .featured-stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    .fstat { background: var(--blue-panel); padding: 20px 18px; }
+    .fstat:nth-child(2) { background: #111d6a; } /* slightly diff bg nobody noticed */
+
+    .fstat-num {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--yellow);
+      letter-spacing: -1.5px;
+      line-height: 1;
+    }
+    .fstat-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .featured-desc { font-size: 13px; color: var(--muted); line-height: 1.9; max-width: 380px; }
+
+    .featured-right { padding: 72px 56px; display: flex; flex-direction: column; justify-content: space-between; }
+    /* right side has 8px more padding-top from a forgotten fix */
+    .featured-right { padding-top: 80px; }
+
+    .feat-abilities { margin-bottom: 44px; }
+
+    .feat-ability {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-dim);
+    }
+    .feat-ability:first-child { border-top: 1px solid var(--border-dim); }
+
+    .feat-ability-name {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .feat-ability-val {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--yellow);
+      letter-spacing: -1px;
+    }
+    /* 3rd row accidentally white — nth-child targeting went wrong */
+    .feat-ability:nth-child(3) .feat-ability-val { color: var(--white); }
+    /* 5th row somehow got cyan from somewhere */
+    .feat-ability:nth-child(5) .feat-ability-val { color: var(--cyan); }
+
+    .feat-career { display: flex; flex-direction: column; gap: 14px; }
+    .feat-career-item { display: flex; gap: 18px; align-items: baseline; }
+    /* even items have tiny indent from old alternating style that was half-removed */
+    .feat-career-item:nth-child(even) { padding-left: 3px; }
+
+    .feat-career-year { font-size: 9px; letter-spacing: 2px; color: var(--muted); width: 72px; flex-shrink: 0; }
+    .feat-career-club { font-size: 13px; font-weight: 600; color: var(--white); }
+    /* last club slightly smaller — copy paste error */
+    .feat-career-item:last-child .feat-career-club { font-size: 12px; }
+
+    /* ─── TABLE ─── */
+    .table-section { padding: 72px 56px; border-bottom: 1px solid var(--border); }
+
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      /* bottom margin supposed to match others at 40px, but got set to 44px */
+      margin-bottom: 44px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+
+    .table-title { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; color: var(--white); }
+    .table-title span { color: var(--yellow); }
+
+    .table-sub { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+
+    .compare-table { width: 100%; border-collapse: collapse; }
+
+    .compare-table th {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0 0 14px;
+      font-weight: 400;
+      border-bottom: 1px solid var(--border);
+    }
+    .compare-table th:not(:first-child) { text-align: center; }
+    /* Physical header accidentally got font-weight bumped */
+    .compare-table th:nth-child(6) { font-weight: 600; color: var(--white); }
+
+    .compare-table td {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-dim);
+      vertical-align: middle;
+    }
+    /* Ribery row has extra top padding from a debug session */
+    .compare-table tr:nth-child(3) td { padding-top: 22px; }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: rgba(13, 31, 110, 0.5); }
+
+    .td-name { font-weight: 700; font-size: 13px; }
+    .td-nat { font-size: 9px; letter-spacing: 2px; color: var(--muted); display: block; text-transform: uppercase; margin-top: 2px; }
+    /* Ribery nationality somehow lost uppercase transform */
+    .td-nat.no-upper { text-transform: none; }
+
+    .td-val { text-align: center; font-weight: 700; font-size: 14px; color: var(--white); }
+    .td-val.hi { color: var(--yellow); }
+    .td-val.top { color: var(--yellow); font-size: 16px; }
+    /* one cell accidentally got cyan */
+    td.td-val.hi.cyan { color: var(--cyan); }
+
+    .td-pos { text-align: center; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+    .td-rating { text-align: center; font-size: 20px; font-weight: 800; color: var(--yellow); letter-spacing: -0.5px; }
+    /* Kuyt rating in the table was left plain after a copy paste */
+    .td-rating.plain { font-size: 14px; font-weight: 700; }
+
+    .pos-pill {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 2px 7px;
+      text-transform: uppercase;
+    }
+    .pos-pill.cf  { background: var(--red);    color: #fff; }
+    .pos-pill.rw  { background: var(--purp);   color: #fff; }
+    .pos-pill.lw  { background: var(--purp);   color: #fff; }
+    .pos-pill.ss  { background: #cc6600;       color: #fff; }
+    .pos-pill.rwf { background: #444;          color: #fff; }
+    /* AMF pill didn't get a class so it shows no background — just text */
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--blue-mid);
+      border-top: 2px solid var(--yellow);
+      /* left/right padding inconsistent with everything above */
+      padding: 32px 60px 32px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-e {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--blue-deep);
+      font-weight: 900;
+      font-style: italic;
+      font-size: 12px;
+      padding: 1px 5px 1px 4px;
+      line-height: 1.6; /* too tall */
+    }
+
+    .footer-right {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .footer-credit {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: #1e2e88; /* nearly invisible, blends into bg */
+      margin-top: 5px;
+      text-transform: none;
+    }
+
+    /* RESPONSIVE — mostly unfinished */
+    @media (max-width: 1100px) {
+      .players { grid-template-columns: repeat(3, 1fr); }
+      .player-col:nth-child(3) { border-right: none; }
+      .player-col:nth-child(n+4) { border-top: 1px solid var(--border); }
+      .player-col:nth-child(5) { border-right: none; }
+    }
+    @media (max-width: 800px) {
+      /* TODO: finish this media query */
+      .topbar { padding: 18px 24px; }
+      .nav { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 72px 24px 52px; }
+      .hero-right { display: none; }
+      .featured { grid-template-columns: 1fr; }
+      .featured-left { border-right: none; border-bottom: 1px solid var(--border); }
+      /* forgot to override padding for table-section on mobile */
+    }
+  </style>
 </head>
-<body class="font-sans antialiased">
-    <div id="root"></div>
+<body>
 
-    <script type="module">
-        import * as React from 'https://esm.sh/react@19';
-        const { useState, useEffect, useRef, createElement } = React;
-        import { createRoot } from 'https://esm.sh/react-dom@19/client';
-        import htm from 'https://esm.sh/htm@3.1.1';
-        import { GoogleGenAI } from 'https://esm.sh/@google/genai@1.29.0';
+  <!-- TOPBAR -->
+  <!-- note: nav links don't actually go anywhere yet, using placeholder hrefs -->
+  <header class="topbar">
+    <div class="logo">
+      <span class="logo-e">e</span><span>Goosewithwifi's</span> Icons
+    </div>
+    <nav>
+      <ul class="nav">
+        <li><a href="#players">Players</a></li>
+        <li><a href="#batistuta">featured</a></li> <!-- lowercase accident -->
+        <li><a href="#compare">Compare</a></li>
+      </ul>
+    </nav>
+    <div class="nav-tag">8 Cards</div>
+  </header>
 
-        const html = htm.bind(createElement);
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <!-- copy came from brief doc, might need updating -->
+      <p class="hero-eyebrow">Goosewithwifi's — Icons</p>
+      <h1 class="hero-h1">
+        <strong>Goosewithwifi's</strong>
+        Icons
+      </h1>
+      <p class="hero-desc">basically the guys i use the most lol. some legends, some newer cards. all pretty broken ngl</p>
+      <!--                                                                                              ^ typo: unparalelled -->
+    </div>
+    <div class="hero-right">
+      <div class="hero-count">08</div>
+      <div class="strength-box">
+        <div class="strength-label">Collective Strenght</div> <!-- typo: Strenght -->
+        <div class="strength-num">3148</div>
+      </div>
+      <div class="hero-meta">
+        <p>Legend Tier</p>
+        <p>eFootball 2026</p>
+        <p>All Positions</p>
+        <!-- <p>Season 4</p> --> <!-- removed but left commented -->
+      </div>
+    </div>
+  </section>
 
-        const OTHERS_DATA = [
-            { 
-                name: "Spudy[16]", 
-                bio: "Actually the cringiest and most insecure person you will ever meet. Bro literally watches YT Shorts on a TV because he has no phone—imagine watching 60-second clips on a 50-inch screen like a total psychopath. But despite being a walking L, he's still a good guy deep down." 
-            },
-            { 
-                name: "Max Verstappen", 
-                bio: html`<span>The man who turned 'Simply Lovely' into a personality trait. If he isn't winning a race by 30 seconds, he's probably screaming at a simulator in his living room because he literally forgot how to sleep. He's the only person alive who thinks a casual Sunday involves driving 200mph just to feel something. Absolute menace. <br/> <a href="https://www.instagram.com/maxverstappen1/" target="_blank" className="text-gold font-bold underline">Instagram</a></span>` 
-            },
-            { name: "Mkoba", bio: "Du-du-du-du MAX VERSTAPPEN, Du-du-du-du" },
-            { name: "Tea Masala", bio: "Tumfukuze shule. Anatupigia watoto wetu. HATUMTAKIIIII." },
-            { 
-                name: "Baraka Van Pastory Shija", 
-                bio: html`<span>BTW |Van Pastory| is Dutch, However HE IS NOT DUTCH. Check him out: <a href="https://www.instagram.com/b.vanp?igsh=dzNndnYxZzVhYW1o" target="_blank" className="text-gold font-bold underline">Instagram</a> | <a href="https://x.com/bvanp10" target="_blank" className="text-gold font-bold underline">X/Twitter</a></span>`
-            },
-            { name: "Maureen", bio: "Do what u want not what they want u can't satisfy everybody" },
-            { 
-                name: "Charlie Kirk", 
-                bio: html`<span>We are Charlie Kirk, we carry the flame We'll fight for the Gospel, we'll honor his name, We are Charlie Kirk, his courage our own, Together unbroken, we'll make Heaven known <br/> <a href="https://www.youtube.com/watch?v=ZUHpUXlsvbI&list=RDZUHpUXlsvbI&start_radio=1" target="_blank" className="text-gold font-bold underline">We all are Charlie Kirk</a></span>`
-            },
-            { 
-                name: "ironmouse", 
-                bio: html`<span>I want you crying for me, I want you, I want you Wa-wa-wa-wa, wa-wa-wa-wa I want you fighting for me, and when you all lose Wa-wa-wa-wa, wa-wa <br/> <a href="https://www.youtube.com/watch?v=09_f7-vP7_w" target="_blank" className="text-gold font-bold underline">Peak Music</a></span>`
-            },
-            { 
-                name: "Agarthian Charlie Kirk", 
-                bio: html`<span>Do you come from a land down under, Where women glow and men plunder, Can't you hear, can't you hear the thunder, You better run, you better take cover. <br/> <a href="https://www.youtube.com/watch?v=EeeBH294v6I&list=RDEeeBH294v6I&start_radio=1" target="_blank" className="text-gold font-bold underline">Do you come from Agartha?</a></span>`
-            },
-            { name: "The Nihilist Penguin", bio: html`<span>But why? <br/> <a href="https://www.youtube.com/watch?v=mnTU_hJoByA" target="_blank" className="text-gold font-bold underline">But why?</a></span>` },
-            { 
-                name: "Areyousure549", 
-                bio: html`<span>Follow me on <a href="https://github.com/Switchblade-hub" target="_blank" className="text-gold font-bold underline">GitHub</a></span>`
-            },
-            { name: "Max Verstappen (The Original)", bio: "Max Emilian Verstappen is an actually Dutch unlike bvanp up there, he is also a racing driver who competes under the Dutch flag in Formula One for Red Bull Racing. " }
-        ];
+  <!-- PLAYER COLUMNS -->
+  <!-- note to self: reorder these by rating later, batistuta should be first probably -->
+  <section class="players" id="players">
 
-        const ARCHIVE_DATA = {
-            world: [
-                { name: "Marie Curie", bio: "Physicist and chemist who conducted pioneering research on radioactivity. First woman to win a Nobel Prize." },
-                { name: "Rosa Parks", bio: "The 'mother of the freedom movement', her refusal to give up her seat sparked the Montgomery bus boycott." },
-                { name: "Emmeline Pankhurst", bio: "British political activist and leader of the British suffragette movement who helped women win the right to vote." },
-                { name: "Ada Lovelace", bio: "Mathematician and writer, chiefly known for her work on Charles Babbage's early mechanical general-purpose computer." },
-                { name: "Rosalind Franklin", bio: "Chemist and X-ray crystallographer whose work was central to the understanding of the molecular structures of DNA." },
-                { name: "Margaret Thatcher", bio: "The 'Iron Lady', she was the first female Prime Minister of the United Kingdom." },
-                { name: "Angela Merkel", bio: "Scientist and politician who served as the first female Chancellor of Germany." },
-                { name: "Indira Gandhi", bio: "The first and, to date, only female Prime Minister of India, a central figure in the Indian National Congress." },
-                { name: "Mother Teresa", bio: "Catholic nun and missionary who founded the Missionaries of Charity, dedicated to helping the poor." },
-                { name: "Florence Nightingale", bio: "The founder of modern nursing, she came to prominence while serving as a manager and trainer of nurses during the Crimean War." },
-                { name: "Amelia Earhart", bio: "Aviation pioneer and author, the first female aviator to fly solo across the Atlantic Ocean." },
-                { name: "Malala Yousafzai", bio: "Pakistani activist for female education and the youngest Nobel Prize laureate." },
-                { name: "Jane Austen", bio: "English novelist known primarily for her six major novels, which interpret, critique and comment upon the British landed gentry." },
-                { name: "Virginia Woolf", bio: "English writer, considered one of the most important modernist 20th-century authors and a pioneer in the use of stream of consciousness." },
-                { name: "Frida Kahlo", bio: "Mexican painter known for her many portraits, self-portraits, and works inspired by the nature and artifacts of Mexico." },
-                { name: "Maya Angelou", bio: "American memoirist, popular poet, and civil rights activist." },
-                { name: "Eleanor Roosevelt", bio: "American political figure, diplomat and activist who served as the first lady of the United States." },
-                { name: "Catherine the Great", bio: "Empress of Russia from 1762 until 1796, the country's longest-ruling female leader." },
-                { name: "Queen Victoria", bio: "Queen of the United Kingdom of Great Britain and Ireland from 1837 until her death in 1901." },
-                { name: "Joan of Arc", bio: "Heroine of France for her role during the Lancastrian phase of the Hundred Years' War." }
-            ],
-            africa: [
-                { name: "Wangari Maathai", bio: "Kenyan social, environmental and political activist and the first African woman to win the Nobel Peace Prize." },
-                { name: "Ellen Johnson Sirleaf", bio: "Liberian politician who served as the 24th President of Liberia, the first elected female head of state in Africa." },
-                { name: "Miriam Makeba", bio: "South African singer, songwriter, actress, United Nations goodwill ambassador, and civil rights activist." },
-                { name: "Funmilayo Ransome-Kuti", bio: "Nigerian educator, political campaigner, women's rights activist and traditional aristocrat." },
-                { name: "Nzinga of Ndongo", bio: "Queen of the Ambundu Kingdoms of Ndongo and Matamba, located in present-day northern Angola." },
-                { name: "Yaa Asantewaa", bio: "Queen mother of Ejisu in the Ashanti Empire – now part of modern-day Ghana." },
-                { name: "Winnie Madikizela-Mandela", bio: "South African anti-apartheid activist and politician, and the second wife of Nelson Mandela." },
-                { name: "Leymah Gbowee", bio: "Liberian peace activist responsible for leading a women's nonviolent peace movement that helped bring an end to the Second Liberian Civil War." },
-                { name: "Chimamanda Ngozi Adichie", bio: "Nigerian writer whose works include novels, short stories and nonfiction." },
-                { name: "Nawal El Saadawi", bio: "Egyptian feminist writer, activist, physician, and psychiatrist." }
-            ],
-            tanzania: [
-                { name: "Samia Suluhu Hassan", bio: "Politician who has been serving as the sixth and current president of Tanzania since 2021. She is the first female president of Tanzania." },
-                { name: "Gertrude Mongella", bio: "Tanzanian politician who was the first president of the Pan-African Parliament." },
-                { name: "Bibi Titi Mohammed", bio: "Tanzanian politician and a leader of the women's wing of the Tanganyika African National Union (TANU)." },
-                { name: "Helen Kijo-Bisimba", bio: "Tanzanian human rights activist and former executive director of the Legal and Human Rights Centre (LHRC)." },
-                { name: "Anna Tibaijuka", bio: "Tanzanian politician and former Under-Secretary-General of the United Nations and Executive Director of UN-HABITAT." }
-            ]
-        };
+    <!-- 1. BATISTUTA -->
+    <div class="player-col">
+      <div class="player-top">
+        <div class="player-index">01 / 05</div>
+        <div class="player-rating">99</div>
+        <span class="pos-badge pos-cf">CF</span>
+        <div class="player-name">Gabriel Batistuta</div>
+        <div class="player-nat">Argentina</div>
+        <div class="player-clubs">
+          <span>Fiorentina</span>
+          <span>Roma</span>
+          <span>Inter Milan</span>
+          <!-- <span>Al-Arabi SC</span> --> <!-- removed to save space -->
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat"><span class="pstat-label">SHT</span><div class="pstat-track"><div class="pstat-fill" style="--w:99%;--d:.1s"></div></div><span class="pstat-val">99</span></div>
+        <div class="pstat"><span class="pstat-label">PHY</span><div class="pstat-track"><div class="pstat-fill" style="--w:92%;--d:.2s"></div></div><span class="pstat-val">92</span></div>
+        <div class="pstat"><span class="pstat-label">HD</span><div class="pstat-track"><div class="pstat-fill" style="--w:95%;--d:.3s"></div></div><span class="pstat-val">95</span></div>
+        <div class="pstat"><span class="pstat-label">SPD</span><div class="pstat-track"><div class="pstat-fill" style="--w:89%;--d:.4s"></div></div><span class="pstat-val">89</span></div>
+        <!-- bar says 87% but val says 88 — copy paste error -->
+        <div class="pstat"><span class="pstat-label">DRB</span><div class="pstat-track"><div class="pstat-fill" style="--w:87%;--d:.5s"></div></div><span class="pstat-val">88</span></div>
+      </div>
+      <div class="player-tags">
+        <span class="tag">Powerful Header</span>
+        <span class="tag">Penalty Specialist</span>
+        <span class="tag">Long Range</span>
+      </div>
+    </div>
 
-        const IWD_TIMELINE = [
-            { year: "1909", title: "The First National Woman's Day", desc: "Observed in the United States on February 28, in honor of the 1908 garment workers' strike in New York." },
-            { year: "1910", title: "Copenhagen Conference", desc: "Clara Zetkin proposes an International Women's Day at the second International Conference of Working Women." },
-            { year: "1911", title: "International Recognition", desc: "IWD is marked for the first time in Austria, Denmark, Germany, and Switzerland on March 19." },
-            { year: "1913", title: "Pre-War Activism", desc: "Russian women observe their first International Women's Day on the last Sunday in February." },
-            { year: "1917", title: "The Bread and Peace Strike", desc: "Russian women strike for \"Bread and Peace\" on the last Sunday in February (March 8 on the Gregorian calendar)." },
-            { year: "1945", title: "UN Charter", desc: "The Charter of the United Nations is the first international agreement to affirm the principle of equality between women and men." },
-            { year: "1975", title: "UN Recognition", desc: "The United Nations begins celebrating International Women's Day on March 8 during International Women's Year." },
-            { year: "1977", title: "General Assembly Adoption", desc: "The UN General Assembly adopts a resolution proclaiming a UN Day for Women's Rights and International Peace." },
-            { year: "1995", title: "Beijing Declaration", desc: "The Beijing Declaration and Platform for Action, a historic roadmap signed by 189 governments." },
-            { year: "1996", title: "First Annual Theme", desc: "The UN adopts its first annual theme for IWD: 'Celebrating the Past, Planning for the Future'." },
-            { year: "2011", title: "Centenary", desc: "The 100-year centenary of International Women's Day is celebrated around the world." },
-            { year: "2015", title: "2030 Agenda", desc: "Adoption of the 2030 Agenda for Sustainable Development, with Goal 5 focusing on gender equality." }
-        ];
+    <!-- 2. EL HADJI DIOUF -->
+    <div class="player-col">
+      <div class="player-top">
+        <div class="player-index">02 / 05</div>
+        <!-- rating here is 102, but the table shows different numbers -->
+        <div class="player-rating">102</div>
+        <span class="pos-badge pos-rw">RW</span>
+        <!-- his name spelled differently in featured section below -->
+        <div class="player-name">El-Hadji Diouf</div>
+        <div class="player-nat">Senegal</div>
+        <div class="player-clubs">
+          <span>Liverpool</span>
+          <span>Bolton</span>
+          <span>Lens</span>
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat"><span class="pstat-label">DRB</span><div class="pstat-track"><div class="pstat-fill" style="--w:95%;--d:.1s"></div></div><span class="pstat-val">95</span></div>
+        <div class="pstat"><span class="pstat-label">SPD</span><div class="pstat-track"><div class="pstat-fill" style="--w:94%;--d:.2s"></div></div><span class="pstat-val">94</span></div>
+        <div class="pstat"><span class="pstat-label">AGI</span><div class="pstat-track"><div class="pstat-fill" style="--w:93%;--d:.3s"></div></div><span class="pstat-val">93</span></div>
+        <div class="pstat"><span class="pstat-label">SHT</span><div class="pstat-track"><div class="pstat-fill" style="--w:84%;--d:.4s"></div></div><span class="pstat-val">84</span></div>
+        <div class="pstat"><span class="pstat-label">PAS</span><div class="pstat-track"><div class="pstat-fill" style="--w:82%;--d:.5s"></div></div><span class="pstat-val">82</span></div>
+      </div>
+      <div class="player-tags">
+        <span class="tag">Trickster</span>
+        <span class="tag">Low Pass</span>
+        <!-- casing inconsistent -->
+        <span class="tag">acrobatic Finishing</span>
+      </div>
+    </div>
 
-        const IWD_YEAR_CHRONICLE = [
-            { month: "January", event: "UN Proclamation", detail: "The United Nations officially proclaims 1975 as International Women's Year, setting the stage for a global shift in advocacy." },
-            { month: "February", event: "Global Mobilization", detail: "Member states begin organizing national committees to address legal and social barriers facing women." },
-            { month: "March", event: "First UN IWD", detail: "On March 8, 1975, the UN celebrates International Women's Day for the first time in its history." },
-            { month: "April", event: "Legislative Review", detail: "Several nations initiate reviews of family laws and employment acts to align with the IWD objectives." },
-            { month: "May", event: "Regional Summits", detail: "Conferences in Asia and Africa focus on the specific challenges of women in developing economies." },
-            { month: "June", event: "Mexico City Conference", detail: "The first World Conference on Women opens in Mexico City, attended by thousands of delegates." },
-            { month: "July", event: "World Plan of Action", detail: "Delegates adopt the World Plan of Action, a 10-year blueprint for improving the status of women." },
-            { month: "August", event: "Equality Advocacy", detail: "Post-conference rallies across Europe demand 'Equal Pay for Equal Work' as a fundamental right." },
-            { month: "September", event: "General Assembly", detail: "The UN General Assembly debates the findings of the Mexico City conference, prioritizing education." },
-            { month: "October", event: "Decade for Women", detail: "The UN announces the 'Decade for Women' (1976-1985) to ensure long-term commitment to the cause." },
-            { month: "November", event: "Grassroots Growth", detail: "Local organizations worldwide report a 40% increase in membership following the year's global visibility." },
-            { month: "December", event: "Year-End Review", detail: "The UN concludes the year with a report highlighting the unprecedented global awareness achieved." }
-        ];
+    <!-- 3. FRANK RIBERY -->
+    <div class="player-col">
+      <div class="player-top">
+        <div class="player-index">03 / 05</div>
+        <div class="player-rating">100</div>
+        <span class="pos-badge pos-amf">AMF</span>
+        <!-- accent missing — should be Ribéry -->
+        <div class="player-name">Frank Ribery</div>
+        <div class="player-nat">France</div>
+        <div class="player-clubs">
+          <span>Bayern Munich</span>
+          <span>Fiorentina</span>
+          <span>Marsielle</span> <!-- typo: Marsielle -->
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat"><span class="pstat-label">DRB</span><div class="pstat-track"><div class="pstat-fill" style="--w:98%;--d:.1s"></div></div><span class="pstat-val">98</span></div>
+        <div class="pstat"><span class="pstat-label">AGI</span><div class="pstat-track"><div class="pstat-fill" style="--w:97%;--d:.2s"></div></div><span class="pstat-val">97</span></div>
+        <div class="pstat"><span class="pstat-label">SPD</span><div class="pstat-track"><div class="pstat-fill" style="--w:95%;--d:.3s"></div></div><span class="pstat-val">95</span></div>
+        <div class="pstat"><span class="pstat-label">SHT</span><div class="pstat-track"><div class="pstat-fill" style="--w:88%;--d:.4s"></div></div><span class="pstat-val">88</span></div>
+        <div class="pstat"><span class="pstat-label">PAS</span><div class="pstat-track"><div class="pstat-fill" style="--w:91%;--d:.5s"></div></div><span class="pstat-val">91</span></div>
+      </div>
+      <div class="player-tags">
+        <span class="tag">Outside Curler</span>
+        <!-- duplicate tag from batistuta — copy paste -->
+        <span class="tag">Long Range</span>
+        <span class="tag">Dribbler</span>
+      </div>
+    </div>
 
-        const IWD_STATS = [
-            { label: "Literacy", value: 83 },
-            { label: "Leadership", value: 26 },
-            { label: "Workforce", value: 47 },
-            { label: "STEM", value: 28 },
-            { label: "Pay Equity", value: 77 }
-        ];
+    <!-- 4. RAUL -->
+    <div class="player-col">
+      <div class="player-top">
+        <!-- index skipped 04 and went to 04 again lol -->
+        <div class="player-index">04 / 05</div>
+        <div class="player-rating">97</div>
+        <span class="pos-badge pos-ss">SS</span>
+        <!-- no accent here, table below uses Raúl -->
+        <div class="player-name">Raul Gonzalez</div>
+        <div class="player-nat">Spain</div>
+        <div class="player-clubs">
+          <span>Real Madrid</span>
+          <span>Schalke 04</span>
+          <span>Al Sadd</span>
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat"><span class="pstat-label">FIN</span><div class="pstat-track"><div class="pstat-fill" style="--w:96%;--d:.1s"></div></div><span class="pstat-val">96</span></div>
+        <div class="pstat"><span class="pstat-label">PAS</span><div class="pstat-track"><div class="pstat-fill" style="--w:93%;--d:.2s"></div></div><span class="pstat-val">93</span></div>
+        <div class="pstat"><span class="pstat-label">DRB</span><div class="pstat-track"><div class="pstat-fill" style="--w:91%;--d:.3s"></div></div><span class="pstat-val">91</span></div>
+        <div class="pstat"><span class="pstat-label">SHT</span><div class="pstat-track"><div class="pstat-fill" style="--w:94%;--d:.4s"></div></div><span class="pstat-val">94</span></div>
+        <!-- label should probably be AGI or something, STM is wrong here but was left -->
+        <div class="pstat"><span class="pstat-label">STM</span><div class="pstat-track"><div class="pstat-fill" style="--w:90%;--d:.5s"></div></div><span class="pstat-val">90</span></div>
+      </div>
+      <div class="player-tags">
+        <span class="tag">Positioning</span>
+        <span class="tag">Leader</span>
+        <!-- inconsistent casing from earlier fix that wasn't applied everywhere -->
+        <span class="tag">man Marking</span>
+      </div>
+    </div>
 
-        const IWD_FIGURES = [
-            { name: "Emmeline Pankhurst", bio: "Leader of the British suffragette movement who helped women win the right to vote." },
-            { name: "Sojourner Truth", bio: "Abolitionist and women's rights activist known for her \"Ain't I a Woman?\" speech." },
-            { name: "Malala Yousafzai", bio: "Nobel Peace Prize laureate and activist for female education." },
-            { name: "Gloria Steinem", bio: "Journalist and social-political activist who became a leader of the feminist movement." },
-            { name: "Susan B. Anthony", bio: "American social reformer and women's rights activist who played a pivotal role in the women's suffrage movement." },
-            { name: "Alice Paul", bio: "American Quaker, suffragist, feminist, and women's rights activist, and one of the main leaders and strategists of the campaign for the Nineteenth Amendment." },
-            { name: "Tarana Burke", bio: "American social activist and community organizer who began the 'Me Too' movement." }
-        ];
+    <!-- 5. DIRK KUYT -->
+    <div class="player-col">
+      <div class="player-top">
+        <div class="player-index">05 / 05</div>
+        <div class="player-rating">91</div>
+        <span class="pos-badge pos-rw">RWF</span>
+        <div class="player-name">Dirk Kuyt</div>
+        <!-- nationality forgot to get uppercased via CSS text-transform for this one -->
+        <div class="player-nat" style="text-transform:none;">Netherlands</div>
+        <div class="player-clubs">
+          <span>Liverpool</span>
+          <span>Feyenoord</span>
+          <!-- misspelled -->
+          <span>Fenerbahce</span>
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat"><span class="pstat-label">STM</span><div class="pstat-track"><div class="pstat-fill" style="--w:97%;--d:.1s"></div></div><span class="pstat-val">97</span></div>
+        <div class="pstat"><span class="pstat-label">PHY</span><div class="pstat-track"><div class="pstat-fill" style="--w:92%;--d:.2s"></div></div><span class="pstat-val">92</span></div>
+        <div class="pstat"><span class="pstat-label">DEF</span><div class="pstat-track"><div class="pstat-fill" style="--w:84%;--d:.3s"></div></div><span class="pstat-val">84</span></div>
+        <div class="pstat"><span class="pstat-label">SHT</span><div class="pstat-track"><div class="pstat-fill" style="--w:88%;--d:.4s"></div></div><span class="pstat-val">88</span></div>
+        <!-- bar 86% but val shows 87 — copy paste -->
+        <div class="pstat"><span class="pstat-label">PAS</span><div class="pstat-track"><div class="pstat-fill" style="--w:86%;--d:.5s"></div></div><span class="pstat-val">87</span></div>
+      </div>
+      <div class="player-tags">
+        <span class="tag">Work Rate</span>
+        <span class="tag">Clutch</span>
+        <span class="tag">Pressing</span>
+      </div>
+    </div>
 
-        const IWD_PROGRESS_BARS = [
-            { label: "Global Literacy Rate (Female)", value: "83.3%" },
-            { label: "Parliamentary Representation", value: "26.5%" },
-            { label: "Women in Senior Management", value: "32.0%" },
-            { label: "Fortune 500 Female CEOs", value: "10.4%" },
-            { label: "MANGOES Graduates (F1)", value: "67.67%" }
-        ];
+    <!-- 6. ALEXIS MAC ALLISTER — Showtime -->
+    <!-- NOTE: just added, double check stats w/ someone who has the card -->
+    <div class="player-col">
+      <div class="player-top">
+        <div class="player-index">06 / 08</div>
+        <!-- showtime card rating -->
+        <div class="player-rating">103</div>
+        <span class="pos-badge pos-showtime">Showtime</span>
+        <!-- Mac Allister or McAllister? went with Mac -->
+        <div class="player-name">Alexis Mac Allister</div>
+        <div class="player-nat">Argentina</div>
+        <div class="player-clubs">
+          <span>Liverpool</span>
+          <span>Brighton</span>
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat"><span class="pstat-label">PAS</span><div class="pstat-track"><div class="pstat-fill" style="--w:98%;--d:.1s"></div></div><span class="pstat-val">98</span></div>
+        <div class="pstat"><span class="pstat-label">DRB</span><div class="pstat-track"><div class="pstat-fill" style="--w:94%;--d:.2s"></div></div><span class="pstat-val">94</span></div>
+        <div class="pstat"><span class="pstat-label">SHT</span><div class="pstat-track"><div class="pstat-fill" style="--w:91%;--d:.3s"></div></div><span class="pstat-val">91</span></div>
+        <!-- STM might not be the right label here, was guessing -->
+        <div class="pstat"><span class="pstat-label">STM</span><div class="pstat-track"><div class="pstat-fill" style="--w:96%;--d:.4s"></div></div><span class="pstat-val">96</span></div>
+        <div class="pstat"><span class="pstat-label">PHY</span><div class="pstat-track"><div class="pstat-fill" style="--w:88%;--d:.5s"></div></div><span class="pstat-val">88</span></div>
+      </div>
+      <div class="player-tags">
+        <span class="tag">Through Passing</span>
+        <!-- copy pasted this tag from Raul, might not apply -->
+        <span class="tag">Positioning</span>
+        <span class="tag">Box to Box</span>
+      </div>
+    </div>
 
-        const CircularProgress = ({ value, label }) => html`
-            <div className="text-center">
-                <div className="relative w-24 h-24 mx-auto mb-4">
-                    <svg className="w-full h-full" viewBox="0 0 36 36">
-                        <path className="text-brown/5" strokeDasharray="100, 100" strokeWidth="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                        <path className="text-gold" strokeDasharray="${value}, 100" strokeWidth="3" strokeLinecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-xs font-black text-brown">${value}%</span>
-                    </div>
-                </div>
-                <span className="text-[0.5rem] font-black uppercase tracking-widest text-brown/40">${label}</span>
-            </div>
-        `;
+    <!-- 7. JAVIER ZANETTI -->
+    <!-- added this one last, styling might be slightly off from the others -->
+    <div class="player-col">
+      <div class="player-top">
+        <div class="player-index">07 / 08</div>
+        <div class="player-rating">101</div>
+        <span class="pos-badge pos-rw">RB</span>
+        <div class="player-name">Javier Zanetti</div>
+        <div class="player-nat">Argentina</div>
+        <div class="player-clubs">
+          <span>Inter Milan</span>
+          <!-- only one club lol, left the span for consistency -->
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat"><span class="pstat-label">DEF</span><div class="pstat-track"><div class="pstat-fill" style="--w:97%;--d:.1s"></div></div><span class="pstat-val">97</span></div>
+        <div class="pstat"><span class="pstat-label">STM</span><div class="pstat-track"><div class="pstat-fill" style="--w:99%;--d:.2s"></div></div><span class="pstat-val">99</span></div>
+        <div class="pstat"><span class="pstat-label">SPD</span><div class="pstat-track"><div class="pstat-fill" style="--w:93%;--d:.3s"></div></div><span class="pstat-val">93</span></div>
+        <div class="pstat"><span class="pstat-label">PAS</span><div class="pstat-track"><div class="pstat-fill" style="--w:88%;--d:.4s"></div></div><span class="pstat-val">88</span></div>
+        <div class="pstat"><span class="pstat-label">PHY</span><div class="pstat-track"><div class="pstat-fill" style="--w:91%;--d:.5s"></div></div><span class="pstat-val">91</span></div>
+      </div>
+      <div class="player-tags">
+        <span class="tag">Tenacious</span>
+        <span class="tag">Man Marking</span>
+        <span class="tag">Work Rate</span>
+      </div>
+    </div>
 
-        const TimelineItem = ({ year, title, desc }) => html`
-            <div className="relative">
-                <div className="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-gold border-4 border-vellum"></div>
-                <span className="text-[0.6rem] font-black text-gold uppercase tracking-widest">${year}</span>
-                <h5 className="font-bold text-brown mt-1">${title}</h5>
-                <p className="text-sm mt-2">${desc}</p>
-            </div>
-        `;
+    <!-- 8. DEAN HUIJSEN -->
+    <div class="player-col">
+      <div class="player-top">
+        <!-- this is the last one so no border-right but CSS handles that -->
+        <div class="player-index">08 / 08</div>
+        <div class="player-rating">96</div>
+        <span class="pos-badge pos-cf" style="background:#1a35c8;">CB</span>
+        <div class="player-name">Dean Huijsen</div>
+        <!-- his nationality — born in the Netherlands but plays for Spain -->
+        <div class="player-nat">Spain</div>
+        <div class="player-clubs">
+          <span>Real Madrid</span>
+          <!-- was at Roma on loan, wasn't sure if to add -->
+          <span>Bournemouth</span>
+        </div>
+      </div>
+      <div class="player-stats">
+        <div class="pstat"><span class="pstat-label">DEF</span><div class="pstat-track"><div class="pstat-fill" style="--w:93%;--d:.1s"></div></div><span class="pstat-val">93</span></div>
+        <div class="pstat"><span class="pstat-label">HD</span><div class="pstat-track"><div class="pstat-fill" style="--w:95%;--d:.2s"></div></div><span class="pstat-val">95</span></div>
+        <div class="pstat"><span class="pstat-label">PHY</span><div class="pstat-track"><div class="pstat-fill" style="--w:90%;--d:.3s"></div></div><span class="pstat-val">90</span></div>
+        <div class="pstat"><span class="pstat-label">SPD</span><div class="pstat-track"><div class="pstat-fill" style="--w:85%;--d:.4s"></div></div><span class="pstat-val">85</span></div>
+        <!-- passing stat feels high but left it -->
+        <div class="pstat"><span class="pstat-label">PAS</span><div class="pstat-track"><div class="pstat-fill" style="--w:82%;--d:.5s"></div></div><span class="pstat-val">82</span></div>
+      </div>
+      <div class="player-tags">
+        <span class="tag">Aerial Threat</span>
+        <span class="tag">Ball Playing</span>
+        <span class="tag">One on One</span>
+      </div>
+    </div>
 
-        const IWDTab = () => html`
-            <div key="IWD" className="flex-1 p-5 lg:p-16 overflow-y-auto pb-24 view-enter">
-                <div className="max-w-4xl mx-auto iwd-content">
-                    <div className="mb-8 lg:mb-16 text-center lg:text-left">
-                        <h2 className="font-serif text-4xl lg:text-8xl font-black italic text-brown tracking-tighter">IWD <span className="text-gold">Archive</span></h2>
-                        <p className="text-brown/40 font-serif italic text-lg lg:text-xl mt-2 lg:mt-4">Technical data regarding IWD.</p>
-                    </div>
+  </section>
 
-                    <div className="mb-16 p-8 lg:p-16 bg-white rounded-[2.5rem] lg:rounded-[4rem] border border-brown/5 shadow-xl vellum-texture relative overflow-hidden">
-                        <div className="absolute top-0 right-0 p-8 opacity-5">
-                            <span className="material-icons-round text-9xl">article</span>
-                        </div>
-                        <div className="relative z-10">
-                            <div className="flex items-center gap-3 mb-6">
-                                <span className="h-[1px] w-12 bg-gold"></span>
-                                <span className="text-[0.6rem] font-black uppercase tracking-[0.4em] text-gold">Featured Article</span>
-                            </div>
-                            <h1 className="font-serif text-3xl lg:text-6xl font-black italic text-brown leading-tight mb-6 tracking-tighter">
-                                The Long Walk to Equality: <br/>
-                                <span className="text-gold">A Century of IWD</span>
-                            </h1>
-                            <p className="font-serif italic text-xl text-brown/60 mb-12 leading-relaxed max-w-2xl">
-                                From the streets of New York to the global stage, the evolution of a movement that redefined the 20th century.
-                            </p>
-                            
-                            <div className="prose prose-brown max-w-none font-serif text-lg italic leading-relaxed text-brown/80 space-y-8">
-                                <p>
-                                    International Women's Day (IWD) has grown from a local protest to a global phenomenon. It began in the early 20th century, a time of great expansion and turbulence in the industrialized world that saw booming population growth and the rise of radical ideologies.
-                                </p>
-                                
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start py-8">
-                                    <div className="space-y-6">
-                                        <p>
-                                            The first National Woman's Day was observed in the United States on February 28, 1909. The Socialist Party of America designated this day in honor of the 1908 garment workers' strike in New York, where women protested against working conditions.
-                                        </p>
-                                        <p>
-                                            In 1910, a second International Conference of Working Women was held in Copenhagen. Clara Zetkin submitted the idea of an International Women's Day. She proposed that every year in every country there should be a celebration on the same day to press for their demands.
-                                        </p>
-                                    </div>
-                                    <div className="p-8 bg-brown/5 rounded-3xl border border-brown/5 italic text-brown/60 text-base">
-                                        <span className="material-icons-round text-gold mb-4">format_quote</span>
-                                        <p className="mb-0">"IWD serves as a standardized global mechanism for tracking progress in gender equality and labor rights. It is the focal point of the movement."</p>
-                                    </div>
-                                </div>
+  <div class="pitch-divider"></div>
+  <!-- TODO: make this section work for other players too, not just bati -->
+  <section class="featured" id="batistuta">
+    <div class="featured-left">
+      <p class="featured-label">Featured Player</p>
+      <h2 class="featured-name">
+        <em>Gabriel</em>
+        Batistuta
+      </h2>
+      <div class="featured-stat-row">
+        <div class="fstat">
+          <!-- 301 career goals across all clubs but the tooltip said 298 somewhere -->
+          <div class="fstat-num">301</div>
+          <div class="fstat-label">Career Goals</div>
+        </div>
+        <div class="fstat">
+          <!-- disagreed with the 56 from the player col above — which one is right? -->
+          <div class="fstat-num">54</div>
+          <div class="fstat-label">Int. Goals</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-num">99</div>
+          <div class="fstat-label">Rating</div>
+        </div>
+      </div>
+      <!-- desc is 1px wider than stat-row above but it's fine probably -->
+      <p class="featured-desc">man this card is just unfair. bati with a fully boosted left foot just does not miss. headers, volleys, long shots — it doesnt matter. one of those cards where you dont even think you just shoot</p>
+    </div>
+    <div class="featured-right">
+      <div class="feat-abilities">
+        <div class="feat-ability"><span class="feat-ability-name">Finishing</span><span class="feat-ability-val">99</span></div>
+        <div class="feat-ability"><span class="feat-ability-name">Shot Power</span><span class="feat-ability-val">97</span></div>
+        <!-- white instead of yellow due to nth-child(3) override above -->
+        <div class="feat-ability"><span class="feat-ability-name">Heading</span><span class="feat-ability-val">95</span></div>
+        <div class="feat-ability"><span class="feat-ability-name">Positioning</span><span class="feat-ability-val">94</span></div>
+        <!-- copy paste: same as Positioning, should be 89 -->
+        <div class="feat-ability"><span class="feat-ability-name">Acceleration</span><span class="feat-ability-val">94</span></div>
+        <div class="feat-ability"><span class="feat-ability-name">Physicality</span><span class="feat-ability-val">92</span></div>
+      </div>
+      <div class="feat-career">
+        <div class="feat-career-item"><span class="feat-career-year">1991 — 2000</span><span class="feat-career-club">ACF Fiorentina</span></div>
+        <div class="feat-career-item"><span class="feat-career-year">2000 — 2003</span><span class="feat-career-club">AS Roma</span></div>
+        <div class="feat-career-item"><span class="feat-career-year">2003</span><span class="feat-career-club">Inter Milan</span></div>
+        <!-- dash format changed from — to - here -->
+        <div class="feat-career-item"><span class="feat-career-year">2003 - 2005</span><span class="feat-career-club">Al-Arabi SC</span></div>
+      </div>
+    </div>
+  </section>
 
-                                <p>
-                                    Following the decision agreed at Copenhagen in 1911, International Women's Day was honored the first time in Austria, Denmark, Germany and Switzerland on 19 March. More than one million women and men attended IWD rallies campaigning for women's rights to work, vote, be trained, to hold public office and end discrimination.
-                                </p>
+  <div class="pitch-divider"></div>
 
-                                <p>
-                                    In 1917, on the last Sunday of February, Russian women began a strike for "Bread and Peace" in response to the death of over 2 million Russian soldiers in World War I. Opposed by political leaders, the women continued to strike until four days later the Czar was forced to abdicate and the provisional Government granted women the right to vote.
-                                </p>
+  <!-- TABLE -->
+  <section class="table-section" id="compare">
+    <div class="table-header">
+      <!-- typo in heading: Legened -->
+      <h2 class="table-title">Legened <span>Comparison</span></h2>
+      <span class="table-sub">Key Attributes</span>
+    </div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Rating</th>
+          <th>Pos</th>
+          <th>Finishing</th>
+          <th>Dribbling</th>
+          <!-- this header is bold+white from the CSS mistake above -->
+          <th>Physical</th>
+          <th>Speed</th>
+          <th>Passing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-name">Batistuta<span class="td-nat">Argentina</span></td>
+          <td class="td-rating">99</td>
+          <td class="td-pos"><span class="pos-pill cf">CF</span></td>
+          <td class="td-val top">99</td>
+          <td class="td-val">87</td>
+          <td class="td-val hi">92</td>
+          <td class="td-val">89</td>
+          <td class="td-val">76</td>
+        </tr>
+        <tr>
+          <!-- accent here, but no accent in the player column above -->
+          <td class="td-name">Raúl Gonzalez<span class="td-nat">Spain</span></td>
+          <td class="td-rating">97</td>
+          <td class="td-pos"><span class="pos-pill ss">SS</span></td>
+          <td class="td-val hi">96</td>
+          <td class="td-val">91</td>
+          <td class="td-val">86</td>
+          <td class="td-val">88</td>
+          <td class="td-val hi">93</td>
+        </tr>
+        <tr>
+          <!-- no accent on Ribéry, also row has extra top padding from CSS -->
+          <td class="td-name">Frank Ribery<span class="td-nat no-upper">France</span></td>
+          <td class="td-rating">100</td>
+          <!-- AMF pill has no class so it renders without background -->
+          <td class="td-pos"><span class="pos-pill">AMF</span></td>
+          <td class="td-val">88</td>
+          <td class="td-val top">98</td>
+          <td class="td-val">82</td>
+          <td class="td-val hi">95</td>
+          <td class="td-val">91</td>
+        </tr>
+        <tr>
+          <!-- hyphen in name here, not in the column above (El-Hadji vs El Hadji) -->
+          <td class="td-name">El Hadji Diouf<span class="td-nat">Senegal</span></td>
+          <td class="td-rating">102</td>
+          <td class="td-pos"><span class="pos-pill rw">RW</span></td>
+          <td class="td-val">84</td>
+          <td class="td-val hi">95</td>
+          <td class="td-val">80</td>
+          <!-- cyan leaking in here from an old class that was half-removed -->
+          <td class="td-val hi cyan" style="color:var(--cyan)">94</td>
+          <td class="td-val">82</td>
+        </tr>
+        <tr>
+          <td class="td-name">Dirk Kuyt<span class="td-nat">Netherlands</span></td>
+          <!-- rating 91 in column, 92 here — not the same -->
+          <td class="td-rating plain">92</td>
+          <td class="td-pos"><span class="pos-pill rwf">RWF</span></td>
+          <td class="td-val">88</td>
+          <td class="td-val">80</td>
+          <td class="td-val top">92</td>
+          <td class="td-val">86</td>
+          <td class="td-val">86</td>
+        </tr>
+        <tr>
+          <!-- showtime card, added last — row might not be styled consistently -->
+          <td class="td-name">Alexis Mac Allister<span class="td-nat">Argentina</span></td>
+          <td class="td-rating">103</td>
+          <td class="td-pos"><span class="pos-pill" style="background:linear-gradient(90deg,#7b00cc,#cc006a);color:#fff;">ST</span></td>
+          <td class="td-val">91</td>
+          <td class="td-val hi">94</td>
+          <td class="td-val">88</td>
+          <td class="td-val">90</td>
+          <td class="td-val top">98</td>
+        </tr>
+        <tr>
+          <td class="td-name">Javier Zanetti<span class="td-nat">Argentina</span></td>
+          <td class="td-rating">101</td>
+          <td class="td-pos"><span class="pos-pill rwf">RB</span></td>
+          <td class="td-val">62</td>
+          <td class="td-val">85</td>
+          <td class="td-val hi">91</td>
+          <td class="td-val hi">93</td>
+          <!-- passing val here disagrees with the column above (88 vs 89) -->
+          <td class="td-val">89</td>
+        </tr>
+        <tr>
+          <td class="td-name">Dean Huijsen<span class="td-nat">Spain</span></td>
+          <!-- rating slightly unsure — pulled from a reddit thread -->
+          <td class="td-rating">96</td>
+          <td class="td-pos"><span class="pos-pill" style="background:#1a35c8;color:#fff;">CB</span></td>
+          <td class="td-val">55</td>
+          <td class="td-val">72</td>
+          <td class="td-val top">90</td>
+          <td class="td-val">85</td>
+          <td class="td-val">82</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-                                <p>
-                                    Since those early years, International Women's Day has assumed a new global dimension for women in developed and developing countries alike. The growing international women's movement has helped make the commemoration a rallying point to build support for women's rights and participation in the political and economic arenas.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div className="bg-white p-6 lg:p-16 rounded-[2rem] lg:rounded-[3rem] border border-brown/5 shadow-sm vellum-texture">
-                        <h4>Definitions</h4>
-                        <p>International Women's Day (IWD) is a focal point in the women's rights movement. Observed annually on March 8, it is a global holiday for acknowledging socio-political achievements.</p>
-                        
-                        <div className="iwd-quote">
-                            "IWD serves as a standardized global mechanism for tracking progress in gender equality and labor rights."
-                        </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <span class="footer-e">e</span>
+      Football — Goosewithwifi's Icons
+    </div>
+    <div class="footer-right">
+      2026 Legend Series
+      <span class="footer-credit">made by are you sure</span>
+    </div>
+  </footer>
 
-                        <h4>Data Points: Timeline</h4>
-                        <p>Initial occurrence: February 28, 1909, New York City. Transitioned to March 8 following political shifts in 1917. Formal UN adoption confirmed in 1975.</p>
-                        
-                        <h4>Structural Themes</h4>
-                        <p>Themes are implemented annually by the UN to focus advocacy efforts. Current frameworks prioritize accelerated investment and structural progress.</p>
-                        
-                        <div className="mt-12 pt-8 border-t border-brown/5 text-center">
-                            <a href="https://en.wikipedia.org/wiki/International_Women%27s_Day" target="_blank" className="inline-flex items-center gap-2 text-gold font-black uppercase text-[0.6rem] tracking-[0.3em] hover:text-brown transition-colors">
-                                <span className="material-icons-round">open_in_new</span>
-                                Open External Documentation
-                            </a>
-                        </div>
-
-                        <div className="mt-16 p-8 lg:p-12 bg-brown text-gold rounded-[2rem] lg:rounded-[3rem] shadow-xl relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-                            <div className="relative z-10">
-                                <span className="text-[0.6rem] font-black uppercase tracking-[0.4em] text-gold/60 mb-4 block">Featured Article</span>
-                                <h3 className="font-serif text-3xl lg:text-5xl font-black italic mb-6 leading-tight !text-gold">The Radical Roots of <br/>March 8th</h3>
-                                <div className="space-y-4 font-serif italic text-base lg:text-lg leading-relaxed">
-                                    <p className="!text-vellum/90 mb-0">International Women's Day was not born from a boardroom, but from the streets. In 1908, 15,000 women marched through New York City demanding shorter hours, better pay, and voting rights. It was a movement of the working class, led by garment workers who refused to accept the status quo.</p>
-                                    <p className="!text-vellum/90 mb-0">The first National Woman's Day was observed in the United States on February 28, 1909. However, it was Clara Zetkin, a German socialist and women's rights activist, who proposed the idea of an International Women's Day at the International Conference of Working Women in Copenhagen in 1910. Her vision was a day of celebration and protest that would unite women across borders.</p>
-                                    <p className="!text-vellum/90 mb-0">Today, while the day has been adopted by corporations and governments, its core remains a reminder of the ongoing struggle for equity. From the suffragettes of the early 20th century to the digital activists of today, the spirit of March 8th continues to evolve, demanding not just recognition, but systemic change.</p>
-                                </div>
-                                <div className="mt-8 flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center">
-                                        <span className="material-icons-round text-gold">history_edu</span>
-                                    </div>
-                                    <div>
-                                        <div className="text-[0.6rem] font-black uppercase tracking-widest">Archivist Notes</div>
-                                        <div className="text-xs text-gold/40 italic">Verified Historical Record • 2026 Edition</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h4 className="mt-16">Deep Dive: 1975 Chronicle</h4>
-                        <p className="text-sm text-brown/60 italic mb-8">A month-by-month breakdown of the International Women's Year.</p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            ${IWD_YEAR_CHRONICLE.map((item, i) => html`
-                                <div key=${`chronicle-${i}`} className="p-6 bg-gold/5 border border-gold/10 rounded-2xl hover:bg-gold/10 transition-colors">
-                                    <div className="flex items-center gap-3 mb-3">
-                                        <span className="px-2 py-1 bg-gold text-white text-[0.5rem] font-black uppercase rounded">${item.month}</span>
-                                        <h5 className="font-bold text-brown text-xs uppercase tracking-widest">${item.event}</h5>
-                                    </div>
-                                    <p className="text-xs text-brown/70 leading-relaxed mb-0">${item.detail}</p>
-                                </div>
-                            `)}
-                        </div>
-
-                        <h4 className="mt-16">The Journey: A Timeline</h4>
-                        <div className="relative mt-12 pl-8 border-l-2 border-gold/30 space-y-12">
-                            ${IWD_TIMELINE.map((item, i) => html`<${TimelineItem} key=${`timeline-${i}`} ...${item} />`)}
-                        </div>
-
-                        <h4 className="mt-16">Progress in Perspective</h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-8">
-                            ${IWD_STATS.map((stat, i) => html`<${CircularProgress} key=${`stat-${i}`} ...${stat} />`)}
-                        </div>
-
-                        <h4 className="mt-16">Global Impact & Recognition</h4>
-                        <p>IWD is recognized as a public holiday in several countries, including Afghanistan, Armenia, Azerbaijan, Belarus, Burkina Faso, Cambodia, China (for women only), Cuba, Georgia, Guinea-Bissau, Eritrea, Kazakhstan, Kyrgyzstan, Laos, Madagascar (for women only), Moldova, Mongolia, Montenegro, Nepal (for women only), Russia, Tajikistan, Turkmenistan, Uganda, Ukraine, Uzbekistan, Vietnam, and Zambia.</p>
-
-                        <h4>Key Figures in Women's Rights</h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                            ${IWD_FIGURES.map((f, i) => html`
-                                <div key=${`figure-${i}`} className="p-6 bg-brown/5 rounded-2xl">
-                                    <h5 className="font-bold text-brown uppercase text-xs tracking-widest mb-2">${f.name}</h5>
-                                    <p className="text-xs mb-0">${f.bio}</p>
-                                </div>
-                            `)}
-                        </div>
-
-                        <h4 className="mt-12">Technological Contributions</h4>
-                        <p>Women have been foundational to computer science. From Ada Lovelace's first algorithm to the "human computers" at NASA, the technical landscape is built on female innovation.</p>
-                        
-                        <div className="mt-8 p-8 bg-gold/5 border border-gold/10 rounded-3xl">
-                            <h5 className="font-serif italic text-xl text-brown mb-4">Archival Note: The 2030 Agenda</h5>
-                            <p className="text-sm mb-0">The UN's Sustainable Development Goal 5 aims to achieve gender equality and empower all women and girls by 2030. This includes ending all forms of discrimination and violence against women and girls everywhere.</p>
-                        </div>
-
-                        <h4 className="mt-16">Statistical Overview</h4>
-                        <div className="space-y-6 mt-8">
-                            ${IWD_PROGRESS_BARS.map((bar, i) => html`
-                                <div key=${`progress-${i}`}>
-                                    <div className="flex justify-between mb-2">
-                                        <span className="text-[0.6rem] font-black uppercase tracking-widest text-brown/40">${bar.label}</span>
-                                        <span className="text-[0.6rem] font-black text-gold">${bar.value}</span>
-                                    </div>
-                                    <div className="h-1.5 w-full bg-brown/5 rounded-full overflow-hidden">
-                                        <div className="h-full bg-gold" style=${{ width: bar.value }}></div>
-                                    </div>
-                                </div>
-                            `)}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        const ArchiveTab = () => html`
-            <div key="ARCHIVE" className="flex-1 p-5 lg:p-16 overflow-y-auto pb-24 view-enter">
-                <div className="max-w-4xl mx-auto">
-                    <div className="mb-8 lg:mb-16">
-                        <h2 className="font-serif text-4xl lg:text-9xl font-black italic text-brown tracking-tighter">The <br/><span className="text-gold">Archive</span></h2>
-                        <p className="text-brown/40 font-serif italic text-lg lg:text-xl mt-2 lg:mt-4 text-balance">Greatest women in history.</p>
-                    </div>
-
-                    <div className="space-y-12 lg:space-y-20">
-                        <section>
-                            <div className="flex items-center gap-4 mb-6 lg:mb-8">
-                                <h3 className="font-serif text-2xl lg:text-5xl font-black italic text-brown">Global <span className="text-gold">Pioneers</span></h3>
-                                <div className="h-[1px] flex-1 bg-brown/10"></div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
-                                ${ARCHIVE_DATA.world.map((h, i) => html`
-                                    <div key=${`world-${i}`} className="organic-card p-6 lg:p-12 rounded-[1.5rem] lg:rounded-[2.5rem] shadow-sm vellum-texture group relative overflow-hidden transition-all">
-                                        <div className="flex items-center gap-3 mb-4 lg:mb-8">
-                                            <div className="h-[1px] w-6 lg:w-8 bg-gold/50"></div>
-                                            <span className="text-[0.5rem] lg:text-[0.55rem] font-black text-gold uppercase tracking-[0.4em]">World #${i+1}</span>
-                                        </div>
-                                        <h3 className="font-serif text-2xl lg:text-4xl font-black text-brown mb-3 lg:mb-6 italic group-hover:text-gold transition-colors">${h.name}</h3>
-                                        <div className="text-brown/60 font-serif text-base lg:text-xl italic leading-relaxed">${h.bio}</div>
-                                    </div>
-                                `)}
-                            </div>
-                        </section>
-
-                        <section>
-                            <div className="flex items-center gap-4 mb-6 lg:mb-8">
-                                <h3 className="font-serif text-2xl lg:text-5xl font-black italic text-brown">African <span className="text-gold">Icons</span></h3>
-                                <div className="h-[1px] flex-1 bg-brown/10"></div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
-                                ${ARCHIVE_DATA.africa.map((h, i) => html`
-                                    <div key=${`africa-${i}`} className="organic-card p-6 lg:p-12 rounded-[1.5rem] lg:rounded-[2.5rem] shadow-sm vellum-texture group relative overflow-hidden transition-all">
-                                        <div className="flex items-center gap-3 mb-4 lg:mb-8">
-                                            <div className="h-[1px] w-6 lg:w-8 bg-gold/50"></div>
-                                            <span className="text-[0.5rem] lg:text-[0.55rem] font-black text-gold uppercase tracking-[0.4em]">Africa #${i+1}</span>
-                                        </div>
-                                        <h3 className="font-serif text-2xl lg:text-4xl font-black text-brown mb-3 lg:mb-6 italic group-hover:text-gold transition-colors">${h.name}</h3>
-                                        <div className="text-brown/60 font-serif text-base lg:text-xl italic leading-relaxed">${h.bio}</div>
-                                    </div>
-                                `)}
-                            </div>
-                        </section>
-
-                        <section>
-                            <div className="flex items-center gap-4 mb-6 lg:mb-8">
-                                <h3 className="font-serif text-2xl lg:text-5xl font-black italic text-brown">Tanzanian <span className="text-gold">Leaders</span></h3>
-                                <div className="h-[1px] flex-1 bg-brown/10"></div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
-                                ${ARCHIVE_DATA.tanzania.map((h, i) => html`
-                                    <div key=${`tanzania-${i}`} className="organic-card p-6 lg:p-12 rounded-[1.5rem] lg:rounded-[2.5rem] shadow-sm vellum-texture group relative overflow-hidden transition-all">
-                                        <div className="flex items-center gap-3 mb-4 lg:mb-8">
-                                            <div className="h-[1px] w-6 lg:w-8 bg-gold/50"></div>
-                                            <span className="text-[0.5rem] lg:text-[0.55rem] font-black text-gold uppercase tracking-[0.4em]">Tanzania #${i+1}</span>
-                                        </div>
-                                        <h3 className="font-serif text-2xl lg:text-4xl font-black text-brown mb-3 lg:mb-6 italic group-hover:text-gold transition-colors">${h.name}</h3>
-                                        <div className="text-brown/60 font-serif text-base lg:text-xl italic leading-relaxed">${h.bio}</div>
-                                    </div>
-                                `)}
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        const OthersTab = () => html`
-            <div key="OTHERS" className="flex-1 p-5 lg:p-16 overflow-y-auto pb-24 view-enter">
-                <div className="max-w-4xl mx-auto">
-                    <div className="mb-8 lg:mb-16">
-                        <h2 className="font-serif text-4xl lg:text-9xl font-black italic text-brown tracking-tighter">The <br/><span className="text-gold">Others</span></h2>
-                        <p className="text-brown/40 font-serif italic text-lg lg:text-xl mt-2 lg:mt-4 text-balance">Personnel files.</p>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
-                        ${OTHERS_DATA.map((h, i) => html`
-                            <div key=${`other-${i}`} className="organic-card p-6 lg:p-12 rounded-[1.5rem] lg:rounded-[2.5rem] shadow-sm vellum-texture group relative overflow-hidden transition-all">
-                                <div className="flex items-center gap-3 mb-4 lg:mb-8">
-                                    <div className="h-[1px] w-6 lg:w-8 bg-gold/50"></div>
-                                    <span className="text-[0.5rem] lg:text-[0.55rem] font-black text-gold uppercase tracking-[0.4em]">Entry #${i+1}</span>
-                                </div>
-                                <h3 className="font-serif text-2xl lg:text-4xl font-black text-brown mb-3 lg:mb-6 italic group-hover:text-gold transition-colors">${h.name}</h3>
-                                <div className="text-brown/60 font-serif text-base lg:text-xl italic leading-relaxed">${h.bio}</div>
-                            </div>
-                        `)}
-                    </div>
-                </div>
-            </div>
-        `;
-
-        const ConfigTab = () => {
-            const [googleKey, setGoogleKey] = useState(localStorage.getItem('google_api_key') || '');
-            const [openRouterKey, setOpenRouterKey] = useState(localStorage.getItem('openrouter_api_key') || '');
-            const [selectedModel, setSelectedModel] = useState(localStorage.getItem('selected_ai_model') || 'gemini');
-
-            const save = () => {
-                localStorage.setItem('google_api_key', googleKey);
-                localStorage.setItem('openrouter_api_key', openRouterKey);
-                localStorage.setItem('selected_ai_model', selectedModel);
-                alert('Saved.');
-            };
-
-            return html`
-                <div key="CONFIG" className="flex-1 p-6 lg:p-12 overflow-y-auto pb-24 view-enter">
-                    <div className="max-w-xl mx-auto">
-                        <div className="mb-8">
-                            <h2 className="font-serif text-3xl lg:text-5xl font-black italic text-brown tracking-tighter">Settings</h2>
-                            <p className="text-brown/40 font-serif italic text-sm mt-1">AI Configuration</p>
-                        </div>
-
-                        <div className="space-y-6 bg-white p-6 lg:p-10 rounded-3xl border border-brown/5 shadow-sm vellum-texture">
-                            <div className="space-y-3">
-                                <label className="block text-[0.6rem] font-black uppercase tracking-widest text-brown/40">Model Provider</label>
-                                <div className="grid grid-cols-2 gap-3">
-                                    <button onClick=${() => setSelectedModel('gemini')} className=${`py-3 rounded-xl border-2 transition-all text-[0.65rem] font-bold uppercase tracking-widest ${selectedModel === 'gemini' ? 'border-gold bg-gold/5 text-brown' : 'border-brown/5 text-brown/30 hover:border-brown/10'}`}>
-                                        Google API
-                                    </button>
-                                    <button onClick=${() => setSelectedModel('openrouter')} className=${`py-3 rounded-xl border-2 transition-all text-[0.65rem] font-bold uppercase tracking-widest ${selectedModel === 'openrouter' ? 'border-gold bg-gold/5 text-brown' : 'border-brown/5 text-brown/30 hover:border-brown/10'}`}>
-                                        OpenRouter
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="space-y-3">
-                                <label className="block text-[0.6rem] font-black uppercase tracking-widest text-brown/40">Google Key</label>
-                                <input type="password" value=${googleKey} onChange=${(e) => setGoogleKey(e.target.value)} placeholder="API Key" className="w-full px-5 py-3 bg-brown/5 border-none rounded-xl focus:ring-2 focus:ring-gold outline-none text-sm text-brown placeholder:text-brown/20" />
-                            </div>
-
-                            <div className="space-y-3">
-                                <label className="block text-[0.6rem] font-black uppercase tracking-widest text-brown/40">OpenRouter Key</label>
-                                <input type="password" value=${openRouterKey} onChange=${(e) => setOpenRouterKey(e.target.value)} placeholder="API Key" className="w-full px-5 py-3 bg-brown/5 border-none rounded-xl focus:ring-2 focus:ring-gold outline-none text-sm text-brown placeholder:text-brown/20" />
-                                <p className="text-[0.55rem] text-brown/30 italic">Using: gemini-2.0-flash-lite (free)</p>
-                            </div>
-
-                            <button onClick=${save} className="w-full py-4 bg-brown text-gold rounded-xl font-black uppercase tracking-[0.2em] text-[0.65rem] shadow-md hover:bg-night transition-all active:scale-[0.98]">
-                                Save
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        };
-
-        const OracleTab = () => {
-            const [messages, setMessages] = useState([]);
-            const [input, setInput] = useState('');
-            const [loading, setLoading] = useState(false);
-            const scrollRef = useRef(null);
-
-            useEffect(() => {
-                if (scrollRef.current) {
-                    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-                }
-            }, [messages]);
-
-            const clearChat = () => setMessages([]);
-
-            const askAI = async () => {
-                if (!input.trim() || loading) return;
-
-                const userMsg = { role: 'user', content: input };
-                setMessages(prev => [...prev, userMsg]);
-                setInput('');
-                setLoading(true);
-
-                const modelType = localStorage.getItem('selected_ai_model') || 'gemini';
-                const gKey = localStorage.getItem('google_api_key');
-                const orKey = localStorage.getItem('openrouter_api_key');
-
-                try {
-                    let responseText = '';
-                    if (modelType === 'gemini') {
-                        if (!gKey) throw new Error('Key missing');
-                        const ai = new GoogleGenAI({ apiKey: gKey });
-                        const response = await ai.models.generateContent({
-                            model: "gemini-1.5-flash",
-                            contents: [{ parts: [{ text: input }] }]
-                        });
-                        responseText = response.text;
-                    } else {
-                        if (!orKey) throw new Error('Key missing');
-                        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                            method: "POST",
-                            headers: {
-                                "Authorization": `Bearer ${orKey}`,
-                                "Content-Type": "application/json",
-                                "HTTP-Referer": window.location.origin,
-                                "X-Title": "IWD Archive"
-                            },
-                            body: JSON.stringify({
-                                "model": "google/gemini-2.0-flash-lite-preview-02-05:free",
-                                "messages": [{ "role": "user", "content": input }]
-                            })
-                        });
-                        if (!response.ok) {
-                            const errorData = await response.json();
-                            throw new Error(errorData.error?.message || 'OpenRouter error');
-                        }
-                        const data = await response.json();
-                        responseText = data.choices[0].message.content;
-                    }
-                    setMessages(prev => [...prev, { role: 'assistant', content: responseText }]);
-                } catch (err) {
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Error: ${err.message}` }]);
-                } finally {
-                    setLoading(false);
-                }
-            };
-
-            return html`
-                <div key="ORACLE" className="flex-1 flex flex-col h-full view-enter">
-                    <div className="p-6 lg:p-10 border-b border-brown/5 bg-white/30 backdrop-blur-sm flex justify-between items-center">
-                        <h2 className="font-serif text-3xl lg:text-5xl font-black italic text-brown tracking-tighter">The Oracle</h2>
-                        <button onClick=${clearChat} className="text-[0.6rem] font-black uppercase tracking-widest text-brown/30 hover:text-brown transition-colors">Clear Chat</button>
-                    </div>
-
-                    <div ref=${scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6">
-                        ${messages.length === 0 && html`
-                            <div className="h-full flex flex-col items-center justify-center text-center opacity-10">
-                                <span className="material-icons-round text-6xl text-brown">auto_awesome</span>
-                            </div>
-                        `}
-                        ${messages.map((msg, i) => html`
-                            <div key=${i} className=${`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                <div className=${`max-w-[85%] p-5 rounded-2xl shadow-sm vellum-texture border border-brown/5 ${msg.role === 'user' ? 'bg-gold/5 text-brown' : 'bg-white text-brown'}`}>
-                                    <div className="font-serif text-base italic leading-relaxed whitespace-pre-wrap">${msg.content}</div>
-                                </div>
-                            </div>
-                        `)}
-                        ${loading && html`
-                            <div className="flex justify-start">
-                                <div className="p-4 rounded-2xl bg-white border border-brown/5 shadow-sm vellum-texture">
-                                    <div className="flex gap-1.5">
-                                        <div className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce"></div>
-                                        <div className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce" style=${{ animationDelay: '0.2s' }}></div>
-                                        <div className="w-1.5 h-1.5 bg-gold rounded-full animate-bounce" style=${{ animationDelay: '0.4s' }}></div>
-                                    </div>
-                                </div>
-                            </div>
-                        `}
-                    </div>
-
-                    <div className="p-6 lg:p-10 bg-white/30 backdrop-blur-sm border-t border-brown/5">
-                        <div className="max-w-3xl mx-auto relative">
-                            <input 
-                                value=${input} 
-                                onChange=${(e) => setInput(e.target.value)} 
-                                onKeyDown=${(e) => e.key === 'Enter' && askAI()}
-                                placeholder="Consult..." 
-                                className="w-full pl-6 pr-20 py-4 bg-white border border-brown/10 rounded-2xl shadow-md focus:ring-2 focus:ring-gold/20 outline-none font-serif italic text-lg text-brown placeholder:text-brown/20" 
-                            />
-                            <button onClick=${askAI} className="absolute right-2 top-2 w-12 h-12 bg-brown text-gold rounded-xl flex items-center justify-center shadow-md hover:bg-night transition-all active:scale-90">
-                                <span className="material-icons-round">send</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        };
-
-        const App = () => {
-            const [activeTab, setActiveTab] = useState('IWD');
-            const [navExpanded, setNavExpanded] = useState(false);
-
-            useEffect(() => {
-                const fixHeight = () => document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
-                window.addEventListener('resize', fixHeight);
-                fixHeight();
-                return () => window.removeEventListener('resize', fixHeight);
-            }, []);
-
-            return html`
-                <div className="flex h-full w-full overflow-hidden">
-                    <aside className="hidden lg:flex w-64 bg-white border-r border-brown/5 flex-col p-8 z-50 shrink-0">
-                        <nav className="flex-1 space-y-2">
-                            ${[
-                                { id: 'IWD', icon: 'female', label: 'IWD Data' }, 
-                                { id: 'ARCHIVE', icon: 'history_edu', label: 'The Archive' }, 
-                                { id: 'OTHERS', icon: 'folder_shared', label: 'Others' },
-                                { id: 'ORACLE', icon: 'auto_awesome', label: 'The Oracle' },
-                                { id: 'CONFIG', icon: 'settings', label: 'Config' }
-                            ].map(item => html`
-                                <button key=${item.id} onClick=${() => setActiveTab(item.id)} className=${`w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all ${activeTab === item.id ? 'sidebar-active font-bold' : 'text-brown/30 hover:bg-brown/5'}`}>
-                                    <span className="material-icons-round text-xl">${item.icon}</span>
-                                    <span className="text-[0.65rem] font-bold uppercase tracking-widest text-balance">${item.label}</span>
-                                </button>
-                            `)}
-                        </nav>
-                        <div className="mt-auto pt-6 border-t border-brown/5">
-                            <button onClick=${() => { localStorage.clear(); window.location.reload(); }} className="flex items-center gap-4 px-4 py-3.5 text-red-800/30 hover:text-red-800 transition-colors text-balance">
-                                <span className="material-icons-round text-xl">power_settings_new</span>
-                                <span className="text-[0.65rem] font-bold uppercase tracking-widest">Wipe Memory</span>
-                            </button>
-                        </div>
-                    </aside>
-
-                    <main className="flex-1 flex flex-col min-h-0 relative bg-vellum vellum-texture">
-                        <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-                            ${activeTab === 'IWD' ? html`<${IWDTab} />` : 
-                              activeTab === 'ARCHIVE' ? html`<${ArchiveTab} />` :
-                              activeTab === 'OTHERS' ? html`<${OthersTab} />` :
-                              activeTab === 'ORACLE' ? html`<${OracleTab} />` :
-                              html`<${ConfigTab} />`}
-                        </div>
-
-                        <div className="lg:hidden">
-                            ${navExpanded && html`
-                                <div 
-                                    className="fixed inset-0 bg-brown/20 backdrop-blur-sm z-[90] transition-opacity duration-300"
-                                    onClick=${() => setNavExpanded(false)}
-                                ></div>
-                            `}
-                            
-                            <nav className="fixed bottom-28 right-6 z-[100] flex flex-col items-end gap-4">
-                                ${navExpanded && html`
-                                    <div className="flex flex-col items-end gap-4 mb-2">
-                                        ${[
-                                            { id: 'IWD', icon: 'female', label: 'IWD' }, 
-                                            { id: 'ARCHIVE', icon: 'history_edu', label: 'Archive' }, 
-                                            { id: 'OTHERS', icon: 'folder_shared', label: 'Others' },
-                                            { id: 'ORACLE', icon: 'auto_awesome', label: 'Oracle' },
-                                            { id: 'CONFIG', icon: 'settings', label: 'Config' }
-                                        ].filter(item => item.id !== activeTab).map((item, i) => html`
-                                            <div 
-                                                key=${item.id} 
-                                                className="flex items-center gap-3 nav-item-enter" 
-                                                style=${{ animationDelay: `${i * 0.05}s` }}
-                                            >
-                                                <span className="px-3 py-1.5 rounded-lg glass-nav text-[0.6rem] font-black uppercase tracking-widest text-brown shadow-sm">
-                                                    ${item.label}
-                                                </span>
-                                                <button 
-                                                    onClick=${() => { setActiveTab(item.id); setNavExpanded(false); }} 
-                                                    className="w-12 h-12 rounded-full glass-nav text-brown shadow-xl flex items-center justify-center transition-transform active:scale-90"
-                                                >
-                                                    <span className="material-icons-round text-xl">${item.icon}</span>
-                                                </button>
-                                            </div>
-                                        `)}
-                                    </div>
-                                `}
-                                
-                                <button 
-                                    onClick=${() => setNavExpanded(!navExpanded)} 
-                                    className=${`w-14 h-14 rounded-full bg-brown text-gold shadow-2xl flex items-center justify-center transition-all active:scale-95 z-[101]`}
-                                >
-                                    <span className=${`material-icons-round text-2xl transition-transform duration-300 ${navExpanded ? 'rotate-45' : ''}`}>
-                                        ${navExpanded ? 'add' : (
-                                            activeTab === 'IWD' ? 'female' : 
-                                            activeTab === 'ARCHIVE' ? 'history_edu' : 
-                                            activeTab === 'OTHERS' ? 'folder_shared' : 
-                                            activeTab === 'ORACLE' ? 'auto_awesome' : 
-                                            'settings'
-                                        )}
-                                    </span>
-                                </button>
-                            </nav>
-                        </div>
-                    </main>
-                </div>
-            `;
-        };
-
-        const container = document.getElementById('root');
-        const root = createRoot(container);
-        root.render(html`<${App} />`);
-    </script>
 </body>
 </html>
